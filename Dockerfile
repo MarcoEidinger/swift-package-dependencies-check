@@ -1,5 +1,8 @@
 # Container image that runs your code
-FROM alpine:3.10
+FROM swift:5.2
+LABEL Description="Docker Container for GitHub action swift-package-dependencies-check"
+LABEL repository="http://github.com/MarcoEidinger/swift-package-dependencies-check/edit/main/Dockerfile"
+LABEL maintainer="Marco Eidinger <eidingermarco@gmail.com>"
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh

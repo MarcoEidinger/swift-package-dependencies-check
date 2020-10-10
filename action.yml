@@ -1,15 +1,15 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'swift-package-dependencies-check'
+description: 'Catch up with outdated versions based on your package dependency requirements'
+branding:
+  icon: "package"
+  color: "purple"
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  isMutating:
+    description: 'Modfiy Package.resolved in case of new versions'
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.isMutating }}
