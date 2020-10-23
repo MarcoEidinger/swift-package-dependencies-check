@@ -12,7 +12,7 @@ else
 	OUTPUT=$(swift package update --dry-run)
 fi
 echo "$OUTPUT"
-if echo "$OUTPUT" | grep -q "0 dependencies have changed."; then
+if echo "$OUTPUT" | grep -q "0 dependencies have changed.\|Everything is already up-to-date"; then
   exit 0
 else
   exit 1

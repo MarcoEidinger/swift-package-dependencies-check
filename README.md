@@ -9,7 +9,7 @@ This action requires [actions/checkout](https://github.com/actions/checkout) in 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: MarcoEidinger/swift-package-dependencies-check@1.0.0
+      - uses: MarcoEidinger/swift-package-dependencies-check@v1
 ```
 
 Action will fail in case there are outdated dependencies.
@@ -21,7 +21,7 @@ By setting `isMutating` you declare the intention to update `Package.resolved` (
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: MarcoEidinger/swift-package-dependencies-check@1.0.0
+      - uses: MarcoEidinger/swift-package-dependencies-check@v1
         with:
           isMutating: 'true'
 ```
@@ -40,7 +40,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check Swift package dependencies
-      uses: MarcoEidinger/swift-package-dependencies-check@1.0.0
+      uses: MarcoEidinger/swift-package-dependencies-check@v1
       with:
         isMutating: true
     - name: Create Pull Request
@@ -54,4 +54,6 @@ jobs:
         body: ''
 ```
 
-Interally the action utilizies  `swift package show-dependencies` and `swift package update` (either with or without the `--dry-run` option). Per default it runs as non-modifying, i.e. with `--dry-run`
+Internally the action utilizes `swift package show-dependencies` and `swift package update` (either with or without the `--dry-run` option). Per default it runs as non-modifying, i.e. with `--dry-run`
+
+You can also pin to a [specific release](MarcoEidinger/swift-package-dependencies-check/releases) version in the format @1.x.x
