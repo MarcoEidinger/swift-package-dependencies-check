@@ -26,7 +26,7 @@ By setting `isMutating` you declare the intention to update `Package.resolved` (
           isMutating: 'true'
 ```
 
-When setting `` then [SwiftPackageIndex/ReleaseNotes](https://github.com/SwiftPackageIndex/ReleaseNotes) is used to return release notes URLs for these updates.
+When setting `isMutating` the tool [SwiftPackageIndex/ReleaseNotes](https://github.com/SwiftPackageIndex/ReleaseNotes) is used to return release notes URLs for detected, necessary updates.
 
 A possible _workflow_ to periodically check for outdated dependencies and then create a pull request to update them: 
 
