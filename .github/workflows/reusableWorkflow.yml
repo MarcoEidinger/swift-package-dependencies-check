@@ -1,0 +1,28 @@
+# Reusable workflow to check for package dependency updates and open a PR to update `Package.resolved` file
+name: Package Dependency Check
+on:
+  workflow_call:
+    inputs:
+      commit-message:
+        required: true
+        type: string
+
+jobs:
+  swift-package-update-PR:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check Swift package dependencies
+      id: spm-dep-check
+      uses: MarcoEidinger/swift-package-dependencies-check@v2
+      with:
+         isMutating: true
+    - name: Create Pull Request
+      if: failure()
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: ${{ inputs.commit-message }}
+        branch: updatePackageDepedencies
+        delete-branch: true
+        title: ${{ inputs.commit-message }}
+        body: ${{ steps.spm-dep-check.outputs.releaseNotes }}

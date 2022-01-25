@@ -8,6 +8,9 @@ inputs:
     description: 'Modfiy Package.resolved in case of new versions'
     required: false
     default: false
+outputs:
+  releaseNotes:
+    description: 'Textual result of SwiftPackageIndex/ReleaseNotes'
 runs:
   using: 'docker'
   image: 'Dockerfile'
