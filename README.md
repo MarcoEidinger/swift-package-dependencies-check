@@ -12,7 +12,17 @@ This action requires [actions/checkout](https://github.com/actions/checkout) in 
       - uses: MarcoEidinger/swift-package-dependencies-check@v2
 ```
 
-Action will fail in case there are outdated dependencies.
+Action will fail in case there are outdated dependencies. This can be suppressed by setting input parameter `failWhenOutdated` to false. Then use output parameter `outdatedDependencies` to know if action detected any outdated dependencies.
+
+```yaml
+  spm-dep-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: MarcoEidinger/swift-package-dependencies-check@2.1.0
+        with:
+          failWhenOutdated: false # or 'false'
+```
 
 By setting `isMutating` you declare the intention to update `Package.resolved` (if present). Please note that the action itself does not commit/push changes.
 
@@ -23,7 +33,7 @@ By setting `isMutating` you declare the intention to update `Package.resolved` (
       - uses: actions/checkout@v2
       - uses: MarcoEidinger/swift-package-dependencies-check@v2
         with:
-          isMutating: 'true'
+          isMutating: 'true' # or true
 ```
 
 When setting `isMutating` the tool [SwiftPackageIndex/ReleaseNotes](https://github.com/SwiftPackageIndex/ReleaseNotes) is used to return release notes URLs for detected, necessary updates.
@@ -43,11 +53,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Check Swift package dependencies
       id: spm-dep-check
-      uses: MarcoEidinger/swift-package-dependencies-check@v2
+      uses: MarcoEidinger/swift-package-dependencies-check@2.1.0
       with:
          isMutating: true
+         failWhenOutdated: false
     - name: Create Pull Request
-      if: failure()
+      if: steps.spm-dep-check.outputs.outdatedDependencies  == 'true'
       uses: peter-evans/create-pull-request@v3
       with:
         commit-message: 'chore: update package dependencies'
@@ -77,6 +88,7 @@ Internally the action utilizes `swift package show-dependencies` and `swift pack
 
 You can also pin to a [specific release](MarcoEidinger/swift-package-dependencies-check/releases) version in the format @2.x.x
 
-Version 1.0.x is using Swift 5.2
-Version 1.1.x is using Swift 5.3
-Version 2.0.x is using Swift 5.5
+- Version 1.0.x is using Swift 5.2
+- Version 1.1.x is using Swift 5.3
+- Version 2.0.x is using Swift 5.5
+- Version 2.1.x is using Swift 5.5
