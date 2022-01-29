@@ -14,11 +14,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Check Swift package dependencies
       id: spm-dep-check
-      uses: MarcoEidinger/swift-package-dependencies-check@v2
+      uses: MarcoEidinger/swift-package-dependencies-check@2.1.0
       with:
          isMutating: true
+         failWhenOutdated: false
     - name: Create Pull Request
-      if: failure()
+      if: steps.spm-dep-check.outputs.outdatedDependencies  == 'true'
       uses: peter-evans/create-pull-request@v3
       with:
         commit-message: ${{ inputs.commit-message }}
