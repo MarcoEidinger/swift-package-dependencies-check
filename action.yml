@@ -5,13 +5,17 @@ branding:
   color: "purple"
 inputs:
   isMutating:
-    description: 'Modfiy Package.resolved in case of new versions'
+    description: 'Modify Package.resolved in case of new versions'
     required: false
     default: false
   failWhenOutdated:
     description: 'Action will fail if outdated dependencies were detected.'
     required: false
     default: true
+   directory:
+    description: 'The path to the directory where you want the swift commands to be run'
+    required: false
+    default: '.'
 outputs:
   outdatedDependencies:
     description: 'Boolean if any dependency is outdated'
@@ -23,3 +27,4 @@ runs:
   args:
     - ${{ inputs.isMutating }}
     - ${{ inputs.failWhenOutdated }}
+    - ${{ inputs.directory }}
