@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 isMutating=$1
 failWhenOutdated=$2
+
+echo "Changing current directory..."
+cd $3
+
 echo "### Current Package Dependencies (swift package show-dependencies)"
 swift package show-dependencies
 SPU_RESULT=""
