@@ -38,6 +38,18 @@ By setting `isMutating` you declare the intention to update `Package.resolved` (
 
 When setting `isMutating` the tool [SwiftPackageIndex/ReleaseNotes](https://github.com/SwiftPackageIndex/ReleaseNotes) is used to return release notes URLs for detected, necessary updates.
 
+The GitHub action is looking in the current directory (`.`) for the package manifest but you can pass a different path with input parameter `directory`. Helpful for Monorepos where the `Package.swift` may not be at the root of the project.
+
+```yaml
+  - name: Check Swift Package dependencies
+    id: spm-dep-check
+    uses: Sherlouk/swift-package-dependencies-check@main
+    with:
+      isMutating: true
+      failWhenOutdated: false
+      directory: 'Ingest'
+```
+
 A possible _workflow_ to periodically check for outdated dependencies and then create a pull request to update them: 
 
 ```yaml
