@@ -104,3 +104,7 @@ You can also pin to a [specific release](MarcoEidinger/swift-package-dependencie
 - Version 1.1.x is using Swift 5.3
 - Version 2.0.x is using Swift 5.5
 - Version 2.1.x is using Swift 5.5
+
+## Similar Packages
+
+- [action-xcodeproj-spm-update](https://github.com/getsidetrack/action-xcodeproj-spm-update) is a GitHub Action which helps to resolve the Swift Package Manager dependencies within your Xcode project (as opposed to dependencies in Swift Packages).
