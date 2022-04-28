@@ -8,7 +8,7 @@ This action requires [actions/checkout](https://github.com/actions/checkout) in 
   spm-dep-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: MarcoEidinger/swift-package-dependencies-check@v2
 ```
 
@@ -18,8 +18,8 @@ Action will fail in case there are outdated dependencies. This can be suppressed
   spm-dep-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: MarcoEidinger/swift-package-dependencies-check@2.1.0
+      - uses: actions/checkout@v3
+      - uses: MarcoEidinger/swift-package-dependencies-check@2.1.4
         with:
           failWhenOutdated: false # or 'false'
 ```
@@ -30,7 +30,7 @@ By setting `isMutating` you declare the intention to update `Package.resolved` (
   spm-dep-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: MarcoEidinger/swift-package-dependencies-check@v2
         with:
           isMutating: 'true' # or true
@@ -62,10 +62,10 @@ jobs:
   spm-dep-check:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Check Swift package dependencies
       id: spm-dep-check
-      uses: MarcoEidinger/swift-package-dependencies-check@2.1.0
+      uses: MarcoEidinger/swift-package-dependencies-check@2.1.4
       with:
          isMutating: true
          failWhenOutdated: false
