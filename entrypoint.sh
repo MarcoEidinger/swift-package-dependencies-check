@@ -35,6 +35,10 @@ echo "$SPU_RESULT"
 if echo "$SPU_RESULT" | grep -q "0 dependencies have changed.\|Everything is already up-to-date"; then
 	echo "::set-output name=outdatedDependencies::false"
 	exit 0
+elif echo "$SPU_RESULT" | grep "error: package"; then
+    echo "error detected"
+	echo "::set-output name=outdatedDependencies::false"
+	exit 1
 else
 	echo "::set-output name=outdatedDependencies::true"
 	if [ "$failWhenOutdated" = true ] || [ "$failWhenOutdated" = 'true' ]; then
