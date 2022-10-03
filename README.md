@@ -19,7 +19,7 @@ Action will fail in case there are outdated dependencies. This can be suppressed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: MarcoEidinger/swift-package-dependencies-check@2.1.4
+      - uses: MarcoEidinger/swift-package-dependencies-check@2.3.0
         with:
           failWhenOutdated: false # or 'false'
 ```
@@ -65,7 +65,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Check Swift package dependencies
       id: spm-dep-check
-      uses: MarcoEidinger/swift-package-dependencies-check@2.1.4
+      uses: MarcoEidinger/swift-package-dependencies-check@2.3.0
       with:
          isMutating: true
          failWhenOutdated: false
@@ -104,6 +104,8 @@ You can also pin to a [specific release](MarcoEidinger/swift-package-dependencie
 - Version 1.1.x is using Swift 5.3
 - Version 2.0.x is using Swift 5.5
 - Version 2.1.x is using Swift 5.5
+- Version 2.2.x is using Swift 5.6
+- Version 2.3.x is using Swift 5.7
 
 ## Similar Packages
 
