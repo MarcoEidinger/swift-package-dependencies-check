@@ -19,7 +19,7 @@ Action will fail in case there are outdated dependencies. This can be suppressed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: MarcoEidinger/swift-package-dependencies-check@2.3.0
+      - uses: MarcoEidinger/swift-package-dependencies-check@2.3.1
         with:
           failWhenOutdated: false # or 'false'
 ```
@@ -65,7 +65,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Check Swift package dependencies
       id: spm-dep-check
-      uses: MarcoEidinger/swift-package-dependencies-check@2.3.0
+      uses: MarcoEidinger/swift-package-dependencies-check@2.3.1
       with:
          isMutating: true
          failWhenOutdated: false
