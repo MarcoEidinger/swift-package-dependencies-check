@@ -26,15 +26,18 @@ if [ "$isMutating" = true ] || [ "$isMutating" = 'true' ]; then
 	echo "::set-output name=releaseNotes::$NOTES"
 
 	echo "### Run swift package update"
-	SPU_RESULT=$(swift package update)
+	SPU_RESULT=$(swift package update 2>&1)
 else
 	echo "### Check Packages Dependencies if they are up-to-date (swift package update --dry-run)"
-	SPU_RESULT=$(swift package update --dry-run)
+	SPU_RESULT=$(swift package update --dry-run 2>&1)
 fi
 echo "$SPU_RESULT"
 if echo "$SPU_RESULT" | grep -q "0 dependencies have changed.\|Everything is already up-to-date"; then
 	echo "::set-output name=outdatedDependencies::false"
 	exit 0
+elif echo "$SPU_RESULT" | grep "error: package"; then
+	echo "::set-output name=outdatedDependencies::false"
+	exit 1
 else
 	echo "::set-output name=outdatedDependencies::true"
 	if [ "$failWhenOutdated" = true ] || [ "$failWhenOutdated" = 'true' ]; then
