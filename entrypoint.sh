@@ -36,7 +36,6 @@ if echo "$SPU_RESULT" | grep -q "0 dependencies have changed.\|Everything is alr
 	echo "::set-output name=outdatedDependencies::false"
 	exit 0
 elif echo "$SPU_RESULT" | grep "error: package"; then
-    echo "error detected"
 	echo "::set-output name=outdatedDependencies::false"
 	exit 1
 else
