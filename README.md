@@ -98,6 +98,8 @@ jobs:
 
 Internally the action utilizes `swift package show-dependencies` and `swift package update` (either with or without the `--dry-run` option). Per default it runs as non-modifying, i.e. with `--dry-run`.
 
+The action will fail if `swift package update` (`--dry-run`) reports an error. This can occur if your package requires a Swift tools version that is different than used by the version of this GitHub action.
+
 You can also pin to a [specific release](MarcoEidinger/swift-package-dependencies-check/releases) version in the format @2.x.x
 
 - Version 1.0.x is using Swift 5.2
