@@ -9,7 +9,7 @@ LABEL maintainer="Marco Eidinger <eidingermarco@gmail.com>"
 
 RUN git clone -b  $SWIFT_RELEASENOTES_BRANCH $SWIFT_RELEASENOTES_REPOSITORY _swift-release-notes \
     && cd _swift-release-notes \
-    && git checkout 7a2ea33cc4731e93797f8447fb430ffe20b6afed \
+    && git checkout 6710dc4e46d5c9c921b21ec891cc210f1a714c96 \
     && apt-get update \
     && apt-get install make \
     && make install \
