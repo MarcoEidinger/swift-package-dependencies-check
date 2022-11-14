@@ -14,16 +14,15 @@ if [ "$isMutating" = true ] || [ "$isMutating" = 'true' ]; then
 	echo "#### run swift-release-notes to get details about changes"
 	NOTES_EXTRACT="$(swift-release-notes . | grep -A 100 "changed.")"
 	# Multiline outputs need special treatment
-	# See https://github.community/t5/GitHub-Actions/set-output-Truncates-Multiline-Strings/m-p/38372#M3322
 	NOTES=$(
 		cat <<-EOF
 			$NOTES_EXTRACT
 		EOF
 	)
-	NOTES="${NOTES//'%'/'%25'}"
-	NOTES="${NOTES//$'\n'/'%0A'}"
-	NOTES="${NOTES//$'\r'/'%0D'}"
-	echo "::set-output name=releaseNotes::$NOTES"
+    # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
+    echo "releaseNotes<<EOF" >> $GITHUB_OUTPUT
+    echo "$NOTES" >> $GITHUB_OUTPUT
+    echo "EOF" >> $GITHUB_OUTPUT
 
 	echo "### Run swift package update"
 	SPU_RESULT=$(swift package update 2>&1)
@@ -33,13 +32,13 @@ else
 fi
 echo "$SPU_RESULT"
 if echo "$SPU_RESULT" | grep -q "0 dependencies have changed.\|Everything is already up-to-date"; then
-	echo "::set-output name=outdatedDependencies::false"
+    echo outdatedDependencies=false >> $GITHUB_OUTPUT
 	exit 0
 elif echo "$SPU_RESULT" | grep "error: package"; then
-	echo "::set-output name=outdatedDependencies::false"
+    echo outdatedDependencies=false >> $GITHUB_OUTPUT
 	exit 1
 else
-	echo "::set-output name=outdatedDependencies::true"
+    echo outdatedDependencies=true >> $GITHUB_OUTPUT
 	if [ "$failWhenOutdated" = true ] || [ "$failWhenOutdated" = 'true' ]; then
 		exit 1
 	else
