@@ -11,6 +11,7 @@ RUN git clone -b  $SWIFT_RELEASENOTES_BRANCH $SWIFT_RELEASENOTES_REPOSITORY _swi
     && cd _swift-release-notes \
     && git checkout main \
     && apt-get update \
+    && apt-get install apt-utils \
     && apt-get install make \
     && make install \
     && cd
