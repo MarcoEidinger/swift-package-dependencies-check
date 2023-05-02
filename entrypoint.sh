@@ -34,7 +34,7 @@ echo "$SPU_RESULT"
 if echo "$SPU_RESULT" | grep -q "0 dependencies have changed.\|Everything is already up-to-date"; then
     echo outdatedDependencies=false >>$GITHUB_OUTPUT
     exit 0
-elif echo "$SPU_RESULT" | grep "error: package"; then
+elif echo "$SPU_RESULT" | grep "error: "; then
     echo outdatedDependencies=false >>$GITHUB_OUTPUT
     exit 1
 else
