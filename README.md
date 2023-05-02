@@ -100,12 +100,13 @@ Internally the action utilizes `swift package show-dependencies` and `swift pack
 
 You can also pin to a [specific release](MarcoEidinger/swift-package-dependencies-check/releases) version in the format @2.x.x
 
-- Version 1.0.x is using Swift 5.2
-- Version 1.1.x is using Swift 5.3
-- Version 2.0.x is using Swift 5.5
-- Version 2.1.x is using Swift 5.5
-- Version 2.2.x is using Swift 5.6
+- Version 2.4.x is using Swift 5.8
 - Version 2.3.x is using Swift 5.7
+- Version 2.2.x is using Swift 5.6
+- Version 2.1.x is using Swift 5.5
+- Version 2.0.x is using Swift 5.5
+- Version 1.1.x is using Swift 5.3
+- Version 1.0.x is using Swift 5.2
 
 The action will fail if `swift package update` (`--dry-run`) reports an error. This can occur if your package requires a Swift tools version different from the one used by this GitHub action.
 
