@@ -100,6 +100,7 @@ Internally the action utilizes `swift package show-dependencies` and `swift pack
 
 You can also pin to a [specific release](MarcoEidinger/swift-package-dependencies-check/releases) version in the format @2.x.x
 
+- Version 2.6.x is using Swift 6.0
 - Version 2.5.x is using Swift 5.9
 - Version 2.4.x is using Swift 5.8
 - Version 2.3.x is using Swift 5.7
