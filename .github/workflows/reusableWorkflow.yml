@@ -11,7 +11,7 @@ jobs:
   swift-package-update-PR:
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Check Swift package dependencies
       id: spm-dep-check
       uses: MarcoEidinger/swift-package-dependencies-check@main
