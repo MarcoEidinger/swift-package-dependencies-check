@@ -8,7 +8,7 @@ This action requires [actions/checkout](https://github.com/actions/checkout) in 
   spm-dep-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: MarcoEidinger/swift-package-dependencies-check@v2
 ```
 
@@ -18,7 +18,7 @@ Action will fail in case there are outdated dependencies. This can be suppressed
   spm-dep-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: MarcoEidinger/swift-package-dependencies-check@2.3.2
         with:
           failWhenOutdated: false # or 'false'
@@ -30,7 +30,7 @@ By setting `isMutating` you declare the intention to update `Package.resolved` (
   spm-dep-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: MarcoEidinger/swift-package-dependencies-check@v2
         with:
           isMutating: 'true' # or true
@@ -60,12 +60,12 @@ on:
     - cron: '0 8 * * 1' # every monday AM 8:00
 jobs:
   spm-dep-check:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Check Swift package dependencies
       id: spm-dep-check
-      uses: MarcoEidinger/swift-package-dependencies-check@2.3.2
+      uses: MarcoEidinger/swift-package-dependencies-check@2.6.0
       with:
          isMutating: true
          failWhenOutdated: false
@@ -100,6 +100,7 @@ Internally the action utilizes `swift package show-dependencies` and `swift pack
 
 You can also pin to a [specific release](MarcoEidinger/swift-package-dependencies-check/releases) version in the format @2.x.x
 
+- Version 2.7.x is using Swift 6.1
 - Version 2.6.x is using Swift 6.0
 - Version 2.5.x is using Swift 5.9
 - Version 2.4.x is using Swift 5.8
